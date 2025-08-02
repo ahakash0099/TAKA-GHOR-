@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giga Pub — ADS Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://ad.gigapub.tech/script?id=1144"></script> <!-- ✅ Giga Pub Script -->
   <style>
     body {
       margin: 0;
@@ -84,12 +85,6 @@
       background: #0f8c5f;
       color: white;
     }
-    .ad-frame {
-      width: 100%;
-      height: 250px;
-      border: none;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -120,13 +115,28 @@
       </div>
 
       <div class="buttons">
-        <button class="btn-green" onclick="alert('Reward Claimed!')">Claim</button>
+        <button class="btn-green" onclick="watchAd()">Claim</button>
         <button class="btn-primary" onclick="alert('Continuing...')">Continue</button>
       </div>
     </div>
-
-    <!-- Giga Pub Ad Frame -->
-    <iframe class="ad-frame" src="https://gigapub.com/ads/example.html"></iframe>
   </div>
+
+  <script>
+    function watchAd() {
+      if (window.showGiga) {
+        window.showGiga()
+          .then(() => {
+            alert("✅ Ad watched! You earned ৳0.01");
+            // TODO: Add backend call here to add balance
+          })
+          .catch(e => {
+            alert("❌ Ad not ready or cancelled. Try again later.");
+            console.error(e);
+          });
+      } else {
+        alert("❌ GigaPub not loaded yet.");
+      }
+    }
+  </script>
 </body>
 </html>
